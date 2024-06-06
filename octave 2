@@ -1,0 +1,17 @@
+% Script de Octave para calcular el crecimiento de la población
+
+% Parámetros iniciales
+P0 = 50;   % Población inicial en millones
+d = 20;    % Tiempo de duplicación en años
+
+% Vector de tiempos
+t = [5, 10, 15];
+
+% Calcular la población futura para cada tiempo en el vector t
+P = P0 * 2 .^ (t / d);
+
+% Mostrar los resultados
+fprintf('Resultados:\n');
+for i = 1:length(t)
+    fprintf('La población en %d años será de %.2f millones.\n', t(i), P(i));
+end
