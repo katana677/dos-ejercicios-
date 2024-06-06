@@ -1,0 +1,7 @@
+function P = saval(P0, r, t)
+  % P0: capital inicial
+  % r: tasa de interés anual en porcentaje
+  % t: número de años
+
+  P = P0 * (1 + (r / 100)) ^ t;
+end
