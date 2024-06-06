@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Valor Futuro de Ahorros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: rgb(250, 250, 250);
+            border: none;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ce1f1f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Valor Futuro de Ahorros</h1>
+    <form id="formulario">
+        <div class="form-group">
+            <label for="capitalInicial">Capital Inicial (€):</label>
+            <input type="number" id="capitalInicial" name="capitalInicial" required>
+        </div>
+        <div class="form-group">
+            <label for="tasaInteres">Tasa de Interés Anual (%):</label>
+            <input type="number" step="0.01" id="tasaInteres" name="tasaInteres" required>
+        </div>
+        <div class="form-group">
+            <label for="numeroAnos">Número de Años:</label>
+            <input type="number" id="numeroAnos" name="numeroAnos" required>
+        </div>
+        <button type="button" onclick="calcularValorFuturo()">Calcular</button>
+    </form>
+    <p id="resultado"></p>
+
+    <script>
+        function saval(P0, r, t) {
+            // P0: capital inicial
+            // r: tasa de interés anual en porcentaje
+            // t: número de años
+            
+            return P0 * Math.pow((1 + (r / 100)), t);
+        }
+
+        function calcularValorFuturo() {
+            const capitalInicial = parseFloat(document.getElementById('capitalInicial').value);
+            const tasaInteres = parseFloat(document.getElementById('tasaInteres').value);
+            const numeroAnos = parseInt(document.getElementById('numeroAnos').value);
+
+            if (isNaN(capitalInicial) || isNaN(tasaInteres) || isNaN(numeroAnos)) {
+                alert('Por favor, ingrese valores válidos.');
+                return;
+            }
+
+            const valorFuturo = saval(capitalInicial, tasaInteres, numeroAnos);
+            document.getElementById('resultado').innerText = `El valor futuro de la cuenta es: ${valorFuturo.toFixed(2)} euros`;
+        }
+    </script>
+</body>
+</html>
